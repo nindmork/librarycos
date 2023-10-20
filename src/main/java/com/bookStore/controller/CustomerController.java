@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bookStore.entity.Customers;
@@ -42,4 +42,16 @@ public class CustomerController {
 		customersservice.save(customer);
 		return "redirect:/customers";
 	}
+	
+	@GetMapping("/customers")
+	public ModelAndView listCustomers() {
+		List<Customers> list = customerService.getAllcustomers();
+		ModelAndView showCustomers = new ModelAndView();
+		showCustomers.setViewName("customers");
+		showCustomers.addObject("customers",list);
+		
+		return showCustomers;
+	}
+	
+
 }

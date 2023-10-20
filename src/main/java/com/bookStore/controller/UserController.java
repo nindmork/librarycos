@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.bookStore.entity.Customers;
 import com.bookStore.entity.Role;
 import com.bookStore.entity.User;
 import com.bookStore.security.BookUserDetails;
@@ -45,7 +46,7 @@ public class UserController {
 	@GetMapping("/users")
 	public String listAll(Model model) {
 		List<User> listUsers = service.listAll();
-		model.addAttribute("listUsers", listUsers);
+		model.addAttribute("users", listUsers);
 		return "users";
 	}
 	
@@ -137,10 +138,17 @@ public class UserController {
 		String message = "The user ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
 		return "redirect:/users";
-		
-		
+				
 	}
 	
+/*	@GetMapping("/users")
+	public ModelAndView listUsers() {
+		List<User> list = service.listAll();	
+		ModelAndView showCustomers = new ModelAndView();
+		showCustomers.setViewName("users");
+		showCustomers.addObject("users",list);
+		return showCustomers;
+	}*/
 
 }
 

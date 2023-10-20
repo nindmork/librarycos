@@ -13,16 +13,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.bookStore.entity.Rental;
+import org.springframework.data.domain.Pageable;
+
 import com.bookStore.entity.Role;
 import com.bookStore.entity.User;
 import com.bookStore.repository.UserRepository;
-import com.bookStore.service.RentalService;
 
-import jakarta.servlet.http.HttpServletResponse;
 
 
 
@@ -37,8 +34,7 @@ public class UserRepositoryTests {
 	@Autowired
 	private TestEntityManager entityManager;
 	
-	@Autowired 
-	private RentalService rentalService;
+
 	
 	@Test
 	public void testCreateUserWithOneRole() {
@@ -154,4 +150,37 @@ public class UserRepositoryTests {
 		
 		assertThat(listUsers.size()).isEqualTo(pageSize);
 	}*/
+	
+	@Test
+	public void testSearchUsers() {
+		String keyword = "Admin";
+	
+		int pageNumber = 0;
+		int pageSize = 4;
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = repo.findAll(keyword, pageable);
+		
+		List<User> listUsers = page.getContent();
+		
+		listUsers.forEach(user -> System.out.println(user));	
+		
+		assertThat(listUsers.size()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void  () {
+		
+		int pageNumber = 1;
+		int pageSize = 4;
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = repo.findAll( pageable);
+		
+		List<User> listUsers = page.getContent();
+		
+		listUsers.forEach(user -> System.out.println(user));	
+		
+		assertThat(listUsers.size()).isGreaterThan(pageSize);
+	}
 }
