@@ -21,7 +21,7 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class UserService {
-	public static final int USERS_PER_PAGE = 4;
+	public static final int USERS_PER_PAGE = 10;
 	
 	@Autowired
 	private UserRepository userRepo; 
@@ -40,10 +40,11 @@ public class UserService {
 		return (List<User>) userRepo.findAll();
 	}
 	
-	/*public Page<User> listByPage(int pageNum){
+		
+	public Page<User> listByPage(int pageNum){
 		Pageable pageable = PageRequest.of(pageNum - 1, USERS_PER_PAGE);
 		return userRepo.findAll(pageable);
-	}*/
+	}
 	
 	public List<Role> listRoles(){
 		return (List<Role>) roleRepo.findAll();

@@ -16,8 +16,10 @@ import org.springframework.test.annotation.Rollback;
 
 import org.springframework.data.domain.Pageable;
 
+import com.bookStore.entity.Customers;
 import com.bookStore.entity.Role;
 import com.bookStore.entity.User;
+import com.bookStore.repository.CustomerRepository;
 import com.bookStore.repository.UserRepository;
 
 
@@ -30,6 +32,9 @@ public class UserRepositoryTests {
 
 	@Autowired
 	private UserRepository repo;
+	
+	@Autowired
+	private CustomerRepository crepo;
 	
 	@Autowired
 	private TestEntityManager entityManager;
@@ -169,18 +174,18 @@ public class UserRepositoryTests {
 	}
 	
 	@Test
-	public void  () {
+	public void TestListFirstPage() {
 		
-		int pageNumber = 1;
+		int pageNumber = 0;
 		int pageSize = 4;
 		
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
-		Page<User> page = repo.findAll( pageable);
+		Page<Customers> page = crepo.findAll(pageable);
 		
-		List<User> listUsers = page.getContent();
+		List<Customers> listCustomers = page.getContent();
 		
-		listUsers.forEach(user -> System.out.println(user));	
+		listCustomers.forEach(user -> System.out.println(user));	
 		
-		assertThat(listUsers.size()).isGreaterThan(pageSize);
+		assertThat(listCustomers.size()).isGreaterThan(pageSize);
 	}
 }

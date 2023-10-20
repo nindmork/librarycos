@@ -21,6 +21,7 @@ public class CustomerService {
 	public Customers getById(Integer id) {		
 		return customerRepo.getReferenceById(id);
 	}
+	
 	public List<Customers> getAllcustomers(){
 		return  customerRepo.findAll();
 	}
