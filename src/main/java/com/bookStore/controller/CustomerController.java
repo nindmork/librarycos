@@ -63,13 +63,6 @@ public class CustomerController {
 	
 	@GetMapping("/customers")
 	public String listCustomers(Model model) {
-		/*List<Customers> list = customerService.getAllcustomers();
-		ModelAndView showCustomers = new ModelAndView();
-		showCustomers.setViewName("customers");
-		showCustomers.addObject("customers",list);
-	
-		return showCustomers;*/
-		
 		return listByPage(1,model,"firstname","asc", null);
 	}		
 	

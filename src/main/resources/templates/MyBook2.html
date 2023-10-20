@@ -51,6 +51,7 @@
     </tr>
   </thead>
   <tbody>
+	  
 	<tr th:each="b,status : ${book}" th:id="'row' + ${status.count}">
         <td th:text="${b.id}"></td>
         <td th:text="${b.name}"></td>
