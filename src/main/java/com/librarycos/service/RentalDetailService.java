@@ -1,12 +1,13 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.bookStore.entity.Rental;
-import com.bookStore.entity.RentalDetail;
-import com.bookStore.repository.RentalDetailRepository;
+
+import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalDetail;
+import com.librarycos.repository.RentalDetailRepository;
 @Service
 public class RentalDetailService {
 	

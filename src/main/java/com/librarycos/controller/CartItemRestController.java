@@ -1,4 +1,4 @@
-package com.bookStore.controller;
+package com.librarycos.controller;
 
 
 import java.util.List;
@@ -9,21 +9,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.RentalDetail;
+import com.librarycos.service.CartException;
+import com.librarycos.service.CartItemService;
+import com.librarycos.service.CustomerService;
+import com.librarycos.service.RentalDetailService;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-import com.bookStore.entity.RentalDetail;
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-import com.bookStore.service.CartException;
-import com.bookStore.service.CustomerService;
-import com.bookStore.service.RentalDetailService;
-
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.bookStore.service.CartItemService;
 
 
 

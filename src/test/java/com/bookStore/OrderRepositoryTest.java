@@ -15,17 +15,17 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.MyBook;
-import com.bookStore.entity.Rental;
-import com.bookStore.entity.RentalDetail;
-import com.bookStore.entity.RentalStatus;
-import com.bookStore.repository.OrderRepository;
-import com.bookStore.service.CartItemService;
-import com.bookStore.service.CustomerService;
-import com.bookStore.service.RentalDetailService;
-import com.bookStore.service.RentalService;
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.MyBook;
+import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalDetail;
+import com.librarycos.entity.RentalStatus;
+import com.librarycos.repository.OrderRepository;
+import com.librarycos.service.CartItemService;
+import com.librarycos.service.CustomerService;
+import com.librarycos.service.RentalDetailService;
+import com.librarycos.service.RentalService;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)	

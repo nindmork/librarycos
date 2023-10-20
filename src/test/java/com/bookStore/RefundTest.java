@@ -8,8 +8,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import com.bookStore.service.RentalDetailService;
-import com.bookStore.service.RentalService;
+import com.librarycos.service.RentalDetailService;
+import com.librarycos.service.RentalService;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)			
 @Rollback(false)

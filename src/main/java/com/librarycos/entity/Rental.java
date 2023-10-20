@@ -1,4 +1,4 @@
-package com.bookStore.entity;
+package com.librarycos.entity;
 
 import java.util.Date;
 import java.util.HashSet;

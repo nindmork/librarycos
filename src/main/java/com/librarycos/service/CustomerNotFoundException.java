@@ -1,4 +1,4 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 public class CustomerNotFoundException extends Exception {
 

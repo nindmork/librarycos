@@ -1,4 +1,4 @@
-package com.bookStore.repository;
+package com.librarycos.repository;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.bookStore.entity.Book;
-import com.bookStore.entity.User;
+import com.librarycos.entity.Book;
+import com.librarycos.entity.User;
 
 
 @Repository

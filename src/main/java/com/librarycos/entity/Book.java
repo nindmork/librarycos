@@ -1,4 +1,4 @@
-package com.bookStore.entity;
+package com.librarycos.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

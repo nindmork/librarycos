@@ -1,4 +1,4 @@
-package com.bookStore.repository;
+package com.librarycos.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,9 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.User;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.User;
 
 
 @Repository

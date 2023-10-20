@@ -1,4 +1,4 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -8,14 +8,13 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.MyBook;
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Rental;
-import com.bookStore.entity.RentalDetail;
-import com.bookStore.entity.RentalStatus;
-
-import com.bookStore.repository.RentalRepository;
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.MyBook;
+import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalDetail;
+import com.librarycos.entity.RentalStatus;
+import com.librarycos.repository.RentalRepository;
 
 @Service
 public class RentalService {

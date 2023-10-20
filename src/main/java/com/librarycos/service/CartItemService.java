@@ -1,4 +1,4 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 
 
@@ -8,11 +8,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.MyBook;
-
-import com.bookStore.repository.CartItemepository;
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.MyBook;
+import com.librarycos.repository.CartItemepository;
 
 import jakarta.transaction.Transactional;
 

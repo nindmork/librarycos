@@ -14,13 +14,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
-import org.springframework.data.domain.Pageable;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.Role;
+import com.librarycos.entity.User;
+import com.librarycos.repository.CustomerRepository;
+import com.librarycos.repository.UserRepository;
 
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.Role;
-import com.bookStore.entity.User;
-import com.bookStore.repository.CustomerRepository;
-import com.bookStore.repository.UserRepository;
+import org.springframework.data.domain.Pageable;
 
 
 

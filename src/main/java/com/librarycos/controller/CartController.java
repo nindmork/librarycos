@@ -1,4 +1,4 @@
-package com.bookStore.controller;
+package com.librarycos.controller;
 
 
 import java.util.List;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.MyBook;
-import com.bookStore.service.BookService;
-import com.bookStore.service.CartItemService;
-import com.bookStore.service.CustomerService;
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.MyBook;
+import com.librarycos.service.BookService;
+import com.librarycos.service.CartItemService;
+import com.librarycos.service.CustomerService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;

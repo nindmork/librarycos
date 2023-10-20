@@ -1,9 +1,9 @@
-package com.bookStore.repository;
+package com.librarycos.repository;
 
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.bookStore.entity.Role;
+import com.librarycos.entity.Role;
 
 
 

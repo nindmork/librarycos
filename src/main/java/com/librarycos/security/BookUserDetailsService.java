@@ -1,12 +1,12 @@
-package com.bookStore.security;
+package com.librarycos.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.bookStore.entity.User;
-import com.bookStore.repository.UserRepository;
+import com.librarycos.entity.User;
+import com.librarycos.repository.UserRepository;
 
 
 public class BookUserDetailsService implements UserDetailsService{

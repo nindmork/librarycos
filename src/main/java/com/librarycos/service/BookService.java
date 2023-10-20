@@ -1,4 +1,4 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 
 import java.util.List;
@@ -9,9 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-import com.bookStore.repository.BookRepository;
+
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.repository.BookRepository;
 
 
 @Service

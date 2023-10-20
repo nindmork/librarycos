@@ -1,4 +1,4 @@
-package com.bookStore.entity;
+package com.librarycos.entity;
 
 public enum RentalStatus {
 	NEW, CANCELLED, RETURNED, EXPIRED

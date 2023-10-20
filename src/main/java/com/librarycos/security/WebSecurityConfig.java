@@ -1,4 +1,4 @@
-package com.bookStore.security;
+package com.librarycos.security;
 
 
 import org.springframework.context.annotation.Bean;

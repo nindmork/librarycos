@@ -1,4 +1,4 @@
-package com.bookStore.controller;
+package com.librarycos.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-
-import com.bookStore.entity.Rental;
-import com.bookStore.entity.RentalDetail;
-
-import com.bookStore.service.CustomerService;
-import com.bookStore.service.RentalDetailService;
-import com.bookStore.service.RentalService;
-
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalDetail;
+import com.librarycos.service.CustomerService;
+import com.librarycos.service.RentalDetailService;
+import com.librarycos.service.RentalService;
 
 import jakarta.servlet.http.HttpServletResponse;
 

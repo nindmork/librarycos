@@ -1,4 +1,4 @@
-package com.bookStore.controller;
+package com.librarycos.controller;
 
 
 import java.io.IOException;
@@ -19,13 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-import com.bookStore.entity.Role;
-import com.bookStore.entity.User;
-import com.bookStore.security.BookUserDetails;
-
-import com.bookStore.service.UserNotFoundException;
-import com.bookStore.service.UserService;
+import com.librarycos.entity.Role;
+import com.librarycos.entity.User;
+import com.librarycos.security.BookUserDetails;
+import com.librarycos.service.UserNotFoundException;
+import com.librarycos.service.UserService;
 
 
 

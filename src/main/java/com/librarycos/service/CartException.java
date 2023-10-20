@@ -1,4 +1,4 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 public class CartException extends Exception {
 

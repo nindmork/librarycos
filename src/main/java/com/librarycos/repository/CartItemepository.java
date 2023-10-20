@@ -1,4 +1,4 @@
-package com.bookStore.repository;
+package com.librarycos.repository;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bookStore.entity.Book;
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.MyBook;
+import com.librarycos.entity.Book;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.MyBook;
 
 @Repository
 public interface CartItemepository extends CrudRepository<MyBook,Integer>{

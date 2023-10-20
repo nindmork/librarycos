@@ -1,4 +1,4 @@
-package com.bookStore.controller;
+package com.librarycos.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bookStore.entity.Customers;
-import com.bookStore.entity.User;
-import com.bookStore.service.CustomerNotFoundException;
-import com.bookStore.service.CustomerService;
-import com.bookStore.service.UserNotFoundException;
-import com.bookStore.service.UserService;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.User;
+import com.librarycos.service.CustomerNotFoundException;
+import com.librarycos.service.CustomerService;
+import com.librarycos.service.UserNotFoundException;
+import com.librarycos.service.UserService;
 
 
 @Controller

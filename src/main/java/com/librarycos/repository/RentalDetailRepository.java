@@ -1,12 +1,11 @@
-package com.bookStore.repository;
+package com.librarycos.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-import com.bookStore.entity.Rental;
-import com.bookStore.entity.RentalDetail;
+import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalDetail;
 
 public interface RentalDetailRepository extends JpaRepository<RentalDetail,Integer>{
 

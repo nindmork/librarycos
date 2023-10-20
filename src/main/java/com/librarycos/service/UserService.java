@@ -1,4 +1,4 @@
-package com.bookStore.service;
+package com.librarycos.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,12 +9,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Pageable;
 
-import com.bookStore.entity.Role;
-import com.bookStore.entity.User;
-import com.bookStore.repository.RoleRepository;
-import com.bookStore.repository.UserRepository;
+import com.librarycos.entity.Role;
+import com.librarycos.entity.User;
+import com.librarycos.repository.RoleRepository;
+import com.librarycos.repository.UserRepository;
+
+import org.springframework.data.domain.Pageable;
 
 import jakarta.transaction.Transactional;
 

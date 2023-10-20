@@ -1,4 +1,4 @@
-package com.bookStore.repository;
+package com.librarycos.repository;
 
 import java.util.List;
 
@@ -7,10 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-
-import com.bookStore.entity.Customers;
-
-import com.bookStore.entity.Rental;
+import com.librarycos.entity.Customers;
+import com.librarycos.entity.Rental;
 
 public interface RentalRepository extends JpaRepository<Rental,Integer> , CrudRepository<Rental,Integer>{
 

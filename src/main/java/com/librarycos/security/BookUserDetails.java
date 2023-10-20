@@ -1,4 +1,4 @@
-package com.bookStore.security;
+package com.librarycos.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,8 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bookStore.entity.Role;
-import com.bookStore.entity.User;
+import com.librarycos.entity.Role;
+import com.librarycos.entity.User;
 
 
 
