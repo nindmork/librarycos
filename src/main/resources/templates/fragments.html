@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+  <body>
+   <th th:fragment="column_link(fieldName, columnLabel)">
+		  <a class="text-black" 
+		  th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + '&sortDir=' + ${fieldName} + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}" >[[${columnLabel}]]</a>
+		  
+		  <span th:if="${sortField == fieldName}"
+		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>		
+		  </th>
+</body>
+</html>
