@@ -1,10 +1,10 @@
 package com.bookStore.service;
 
-public class UserNotFoundException extends Exception {
+public class CustomerNotFoundException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public UserNotFoundException(String message) {
+	public CustomerNotFoundException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

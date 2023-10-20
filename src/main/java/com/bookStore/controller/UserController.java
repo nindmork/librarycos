@@ -60,7 +60,7 @@ public class UserController {
 		user.setEnabled(true);
 		model.addAttribute("user",user);
 		model.addAttribute("listRoles",listRoles);
-		model.addAttribute("pageTitle","Create New User");
+		model.addAttribute("pageTitle","ลงทะเบียนเจ้าหน้าที่");
 		return "user_form";
 	}
 	
@@ -97,7 +97,6 @@ public class UserController {
 		return "users";
 	}
 	
-	
 	@PostMapping("/users/save")
 	public String saveUser(User user, RedirectAttributes redirectAttributes
 			) throws IOException {
@@ -105,14 +104,13 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", "The user has been saved sucessfully.");
 
 		service.save(user);
-		return "redirect:/users";
+		return getRedirectURLtoAffectedUser(user);
 	}
 	
 	private String getRedirectURLtoAffectedUser(User user) {
 		String firstPartOfEmail = user.getEmail().split("@")[0];
 		return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail;
 	}
-	
 	
 	
 	

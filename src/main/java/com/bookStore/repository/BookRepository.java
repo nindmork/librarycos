@@ -2,6 +2,8 @@ package com.bookStore.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.bookStore.entity.Book;
+import com.bookStore.entity.User;
 
 
 @Repository
@@ -27,6 +30,9 @@ public interface BookRepository extends JpaRepository<Book,Integer>  {
 	//@Query(value = "SELECT * FROM my_entity WHERE id IN (SELECT id FROM other_table WHERE condition = :condition)", nativeQuery = true)
 	@Query(value = "SELECT * FROM book WHERE id = ?1", nativeQuery = true)
 	public List<Book> getBookID(int id);
+	
+	@Query("SELECT u FROM Book u WHERE CONCAT (u.id,' ',u.name,' ',u.author) LIKE %?1%")
+	public Page<Book> findAll(String keyword, Pageable pageable);
 	
 	
 

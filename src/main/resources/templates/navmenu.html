@@ -27,13 +27,13 @@
         <a class="nav-link text-white" th:href="@{/customer/new}">ลงทะเบียนผู้ยืม</a>
      	 </li>
      	 <li>
-        <a class="nav-link text-white" th:href="@{/users/new}">ลงทะเบียนบรรณารักษ์</a>
+        <a class="nav-link text-white" th:href="@{/users/new}" sec:authorize="hasAuthority('Admin')">ลงทะเบียนบรรณารักษ์</a>
      	 </li>
      	 <li>
         	<a class="nav-link text-white" th:href="@{/customers}">รายชื่อผู้ยืม</a>
      	 </li>
      	  <li>
-        	<a class="nav-link text-white" th:href="@{/users}">รายชื่อบรรณารักษ์</a>
+        	<a class="nav-link text-white" th:href="@{/users}" sec:authorize="hasAuthority('Admin')">รายชื่อบรรณารักษ์</a>
      	 </li>
      	 </ul>
      	 <ul>

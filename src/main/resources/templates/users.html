@@ -28,21 +28,12 @@
   		<table class="table  table-striped table-hover">
   <thead>
     <tr>
-      <th scope="col">รหัส</th>
-      <th scope="col">
-		  <a th:if="${sortField != 'firstName'}" class="text-black" 
-		  th:href="@{'/users/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}" >ชื่อ</a>
-		  <span th:if="${sortField == 'firstName'}"
-		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-		  <a th:if="${sortField == 'firstName'}" class="text-black"
-		  th:href="@{'/users/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}+ ${keyword != null ? '&keyword=' + keyword : ''}}">ชื่อ</a>
-		  <span th:if="${sortField == 'firstName'}"
-		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>		
-		  </th>
-      <th scope="col">นามสกุล</th>
-      <th scope="col">อีเมล์</th>
+      <th th:replace="fragments :: column_link('id', 'รหัส' ,'users')"/>
+      <th th:replace="fragments :: column_link('firstName', 'ชื่อ','users')"/>
+      <th th:replace="fragments :: column_link('lastName', 'นามสกุล','users')"/>
+      <th th:replace="fragments :: column_link('email', 'อีเมล์','users')"/>
       <th scope="col">ตำแหน่ง</th>
-      <th scope="col"></th>
+      <th scope="col">ดำเนินการ</th>
     </tr>
   </thead>
   <tbody>
@@ -52,6 +43,10 @@
       <td th:text="${c.lastName}"></td>
       <td th:text="${c.email}"></td>
       <td th:text="${c.roles}"></td>
+      <td>
+		  <a style="color:blue" th:href="@{'/users/edit/' + ${c.id}}" ><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+     	  <a style="color:red" th:href="@{'/users/delete/' + ${c.id}}"><i class="fa-solid fa-trash ms-4"></i></a>
+	  </td>
  
       <td>
 		
