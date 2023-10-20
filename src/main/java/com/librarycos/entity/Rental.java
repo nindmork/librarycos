@@ -15,55 +15,57 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rentals")
+@Table(name = "record")
 public class Rental {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 128, nullable = true, unique = false)
-	private String email;
-	
-	@Column(name = "firstname", length = 45, nullable = true)
-	private String firstname;
-	
-	@Column(name = "lastname", length = 45, nullable = true)
-	private String lastname;
-	
-	@Column(name = "citynumber", length = 256, nullable = true)
-	private String citynumber;
-	
-	@Column(name = "phonenumber", length = 45, nullable = true)
-	private String phonenumber;
-	
 	private Date rentalTime;
-	
 	private Date rentaEndtime;
 	
+	@Enumerated(EnumType.STRING)
+	private RentalStatus status;
+	
+	@OneToOne
+	@JoinColumn(name = "book_id")
+	private Book book;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_rentid")
+	private User userrent;
+
+	@ManyToOne
+	@JoinColumn(name = "user_refundid")
+	private User userrefund;
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customers customer;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)	
-	private Set<RentalDetail> orderDetails = new HashSet<>();
-
-	private int rentalDays;
-	
-	@Enumerated(EnumType.STRING)
-	private RentalStatus status;
 	
 	
-	public Date getRentaEndtime() {
-		return rentaEndtime;
+	public Rental() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setRentaEndtime(Date rentaEndtime) {
+	public Rental(Integer id, Date rentalTime, Date rentaEndtime, RentalStatus status, Book book, User userrent,
+			User userrefund, Customers customer) {
+		super();
+		this.id = id;
+		this.rentalTime = rentalTime;
 		this.rentaEndtime = rentaEndtime;
+		this.status = status;
+		this.book = book;
+		this.userrent = userrent;
+		this.userrefund = userrefund;
+		this.customer = customer;
 	}
 
 	public Integer getId() {
@@ -74,42 +76,6 @@ public class Rental {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getCitynumber() {
-		return citynumber;
-	}
-
-	public void setCitynumber(String string) {
-		this.citynumber = string;
-	}
-
-	public String getPhonenumber() {
-		return phonenumber;
-	}
-
 	public Date getRentalTime() {
 		return rentalTime;
 	}
@@ -118,32 +84,12 @@ public class Rental {
 		this.rentalTime = rentalTime;
 	}
 
-	public void setPhonenumber(String string) {
-		this.phonenumber = string;
+	public Date getRentaEndtime() {
+		return rentaEndtime;
 	}
 
-	public Customers getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customers customer) {
-		this.customer = customer;
-	}
-
-	public Set<RentalDetail> getOrderDetails() {
-		return orderDetails;
-	}
-
-	public void setOrderDetails(Set<RentalDetail> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
-
-	public int getRentalDays() {
-		return rentalDays;
-	}
-
-	public void setRentalDays(int rentalDays) {
-		this.rentalDays = rentalDays;
+	public void setRentaEndtime(Date rentaEndtime) {
+		this.rentaEndtime = rentaEndtime;
 	}
 
 	public RentalStatus getStatus() {
@@ -154,9 +100,43 @@ public class Rental {
 		this.status = status;
 	}
 
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public User getUserrent() {
+		return userrent;
+	}
+
+	public void setUserrent(User userrent) {
+		this.userrent = userrent;
+	}
+
+	public User getUserrefund() {
+		return userrefund;
+	}
+
+	public void setUserrefund(User userrefund) {
+		this.userrefund = userrefund;
+	}
+
+	public Customers getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customers customer) {
+		this.customer = customer;
+	}
+
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", rentalTime=" + rentalTime + ", customer=" + customer.getFirstname()+customer.getLastname() + "]";
+		return "Rental [id=" + id + ", rentalTime=" + rentalTime + ", rentaEndtime=" + rentaEndtime + ", status="
+				+ status + ", book=" + book + ", userrent=" + userrent + ", userrefund=" + userrefund + ", customer="
+				+ customer + "]";
 	}
 	
 }

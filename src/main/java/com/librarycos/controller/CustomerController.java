@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.librarycos.ControllerHelper;
 import com.librarycos.entity.Customers;
 import com.librarycos.entity.User;
 import com.librarycos.service.CustomerNotFoundException;
@@ -21,12 +22,14 @@ import com.librarycos.service.CustomerService;
 import com.librarycos.service.UserNotFoundException;
 import com.librarycos.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class CustomerController {
 
 	@Autowired private CustomerService customerService;
-	
+	@Autowired private ControllerHelper controllerHelper;
 	@Autowired
 	private CustomerService customersservice;
 	
@@ -52,12 +55,13 @@ public class CustomerController {
 	
 
 	@PostMapping("/customer/save")
-	public String saveCustomer(Customers customer, RedirectAttributes redirectAttributes
+	public String saveCustomer(Customers customer,HttpServletRequest request, RedirectAttributes redirectAttributes
 			) throws IOException {
-
-		redirectAttributes.addFlashAttribute("message", "The customer has been saved sucessfully.");
-
-		customersservice.save(customer);
+				redirectAttributes.addFlashAttribute("message", "The customer has been saved sucessfully.");
+		User user = controllerHelper.getAuthenticatedUser(request);
+		customersservice.save(customer, user);
+		int id = user.getId();
+		System.out.println(id);
 		return "redirect:/customers";
 	}
 	

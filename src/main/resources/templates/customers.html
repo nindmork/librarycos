@@ -34,6 +34,8 @@
        <th th:replace="fragments :: column_link('lastname', 'นามสกุล', 'customers')"/>
       <th th:replace="fragments :: column_link('citynumber', 'รหัสประชาชน', 'customers')"/>
        <th th:replace="fragments :: column_link('phonenumber', 'เบอร์โทรศัพท์', 'customers')"/>
+        <th th:replace="fragments :: column_link('risgisDate', 'วันที่ลงทะเบียน', 'customers')"/>
+        <th th:replace="fragments :: column_link('user', 'เจ้าหน้าที่ผู้ลงทะเบียน', 'customers')"/>
       <th scope="col">ดำเนินการ</th>
     </tr>
   </thead>
@@ -44,6 +46,8 @@
       <td th:text="${c.lastname}"></td>
       <td th:text="${c.citynumber}"></td>
       <td th:text="${c.phonenumber}"></td>
+      <td th:text="${c.risgisDate}"></td>
+       <td th:text="${c.user}"></td>
  	
       <td>
 		 

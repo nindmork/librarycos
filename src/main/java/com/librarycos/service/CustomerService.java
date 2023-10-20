@@ -1,5 +1,6 @@
 package com.librarycos.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,9 @@ public class CustomerService {
 		return  customerRepo.findAll();
 	}
 	
-	public Customers save(Customers customer) {
+	public Customers save(Customers customer,User user) {
+		customer.setRisgisDate(new Date());
+		customer.setUser(user);
 		return customerRepo.save(customer);
 	}
 	

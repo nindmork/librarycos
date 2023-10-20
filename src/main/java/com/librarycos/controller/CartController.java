@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
-import com.librarycos.entity.MyBook;
+
 import com.librarycos.service.BookService;
-import com.librarycos.service.CartItemService;
+
 import com.librarycos.service.CustomerService;
 
 import jakarta.servlet.http.Cookie;
@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class CartController {
 @Autowired private BookService bservice;
-@Autowired private CartItemService cartitemService;	
+
 @Autowired private CustomerService customerService;
 
 	@GetMapping("/find_customer")
@@ -107,7 +107,7 @@ public class CartController {
 	}
 	
 	
-	@GetMapping("/cartview")
+	/*@GetMapping("/cartview")
 	public String testviewCart(Model model,@CookieValue(value = "customerid", defaultValue = "") String customerId) {	
 		Integer customerIdi = Integer.valueOf(customerId);
 		Customers customer = customerService.getById(customerIdi);	
@@ -118,5 +118,5 @@ public class CartController {
 		return "/cartview";
 		
 	}
-	
+	*/
 }

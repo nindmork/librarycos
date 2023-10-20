@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
-import com.librarycos.entity.RentalDetail;
+
 import com.librarycos.service.CartException;
-import com.librarycos.service.CartItemService;
+
 import com.librarycos.service.CustomerService;
-import com.librarycos.service.RentalDetailService;
+
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 
@@ -28,11 +28,10 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 public class CartItemRestController {
 	
-	@Autowired
-	private CartItemService cartitemService;
+
 	@Autowired
 	private CustomerService customerService;
-	@Autowired private RentalDetailService rentalDService;
+/*
 	@PostMapping("/cart/add/{bookId}/{quantity}/{customerId}")
 	public String addBookToCart(@PathVariable("bookId") Integer bookId,
 			@PathVariable("quantity")Integer quantity,@PathVariable("customerId")Integer customerId) {
@@ -66,5 +65,5 @@ public class CartItemRestController {
 		return "/refund";
 	}
 	
-	
+	*/
 }

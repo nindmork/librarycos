@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
 import com.librarycos.entity.Rental;
-import com.librarycos.entity.RentalDetail;
+
 import com.librarycos.service.CustomerService;
-import com.librarycos.service.RentalDetailService;
+
 import com.librarycos.service.RentalService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +30,7 @@ public class MyBookController {
 
 	@Autowired private CustomerService customerService;
 	@Autowired private RentalService rentalService;
-	@Autowired private RentalDetailService rentalDService;
+/*	@Autowired private RentalDetailService rentalDService;
 
 	@GetMapping("/my_books")
 	public String listFirstPage(Model model) {
@@ -42,11 +42,7 @@ public class MyBookController {
 			@Param("sortField")String sortField, 
 			@Param("sortDir")String sortDir,
 			@Param("keyword")String keyword){
-		/*List<Customers> list = customerService.getAllcustomers();
-		ModelAndView showCustomers = new ModelAndView();
-		showCustomers.setViewName("MyBook");
-		showCustomers.addObject("customers",list);
-		return showCustomers;*/
+
 		Page<Customers> page = customerService.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Customers> listCustomers = page.getContent();
 		long startCount = (pageNum - 1) * CustomerService.CUSTOMERS_PER_PAGE + 1;
@@ -92,5 +88,5 @@ public class MyBookController {
 	}
 
 	
-
+*/
 }

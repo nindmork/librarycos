@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -11,50 +13,79 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	private int isbn;
 	private String name;
 	private String author;
-	private int quantity;
+	private int dayofrents;
 	
-
-	public Book(int id, String name, String author, Integer quantity) {	
-		this.id = id;
-		this.name = name;
-		this.author = author;
-		this.quantity= quantity;
-	}
+	
+	
 	public Book() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Book(int id) {
+
+	public Book(int id, int isbn, String name, String author, int dayofrents, User user) {
+		super();
 		this.id = id;
+		this.isbn = isbn;
+		this.name = name;
+		this.author = author;
+		this.dayofrents = dayofrents;
+		this.user = user;
 	}
-	
+
+	@ManyToOne
+	@JoinColumn(name = "users_id")
+	private User user;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public int getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public int getQuantity() {
-		return quantity;
+
+	public int getDayofrents() {
+		return dayofrents;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	} 
 
+	public void setDayofrents(int dayofrents) {
+		this.dayofrents = dayofrents;
+	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
 }

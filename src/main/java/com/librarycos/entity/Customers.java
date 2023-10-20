@@ -1,10 +1,14 @@
 package com.librarycos.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,22 +34,33 @@ public class Customers {
 	@Column(name = "phonenumber", length = 45, nullable = false)
 	private String phonenumber;
 	
+	private Date risgisDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Customers() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public Customers(Integer id) {
-		this.id = id;
-	}
-
-	public Customers(String email, String firstname, String lastname, String citynumber, String phonenumber) {
+	public Customers(Integer id, String email, String firstname, String lastname, String citynumber, String phonenumber,
+			Date risgisDate, User user) {
 		super();
+		this.id = id;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.citynumber = citynumber;
 		this.phonenumber = phonenumber;
+		this.risgisDate = risgisDate;
+		this.user = user;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -95,4 +110,24 @@ public class Customers {
 		this.phonenumber = phonenumber;
 	}
 
+	public Date getRisgisDate() {
+		return risgisDate;
+	}
+
+	public void setRisgisDate(Date risgisDate) {
+		this.risgisDate = risgisDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
 }
+
+

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
-import com.librarycos.entity.MyBook;
+
 import com.librarycos.service.BookService;
-import com.librarycos.service.CartItemService;
+
 import com.librarycos.service.CustomerService;
 import com.librarycos.service.RentalService;
 
@@ -20,7 +20,7 @@ import com.librarycos.service.RentalService;
 
 @Controller
 public class CheckoutController {
-
+/*
 	@Autowired
 	private CartItemService cartitemService;
 	
@@ -59,5 +59,5 @@ public class CheckoutController {
 	@GetMapping("/rental_completed")
 	public String rental_completed() {	
 		return "/rental_completed";
-	}
+	}*/
 }

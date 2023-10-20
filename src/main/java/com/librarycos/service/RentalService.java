@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
-import com.librarycos.entity.MyBook;
+
 import com.librarycos.entity.Rental;
-import com.librarycos.entity.RentalDetail;
+
 import com.librarycos.entity.RentalStatus;
 import com.librarycos.repository.RentalRepository;
 
 @Service
 public class RentalService {
 	
-	
+/*	
 	@Autowired private RentalRepository repo;
 
    public Date calculateRentalEndTime(Date rentalStartTime, int rentalDays) {
@@ -67,4 +67,6 @@ public class RentalService {
 	public List<RentalDetail> listRentalDetail(Rental rental) {
 		return repoD.findByOrder(rental);
 	}*/
+	
+	
 }

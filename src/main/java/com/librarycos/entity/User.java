@@ -52,6 +52,11 @@ public class User {
 	public User() {
 		
 	}
+	
+	public User(Integer id) {
+
+		this.id = id;
+	}
 
 	public User(String email, String password, String firstName, String lastName) {
 		this.email = email;
@@ -131,8 +136,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", roles=" + roles + "]";
+		return  firstName + " " + lastName + " " + roles ;
 	}
 	
 	public String getPhotosImagePath() {
