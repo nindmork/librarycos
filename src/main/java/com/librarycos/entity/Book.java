@@ -13,7 +13,8 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int isbn;
+	
+	private String isbn;
 	private String name;
 	private String author;
 	private int dayofrents;
@@ -21,11 +22,18 @@ public class Book {
 	
 	
 	public Book() {
-		super();
-		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Book(int id) {
+
+		this.id = id;
 	}
 
-	public Book(int id, int isbn, String name, String author, int dayofrents, User user) {
+
+
+	public Book(int id, String isbn, String name, String author, int dayofrents, User user) {
 		super();
 		this.id = id;
 		this.isbn = isbn;
@@ -47,11 +55,11 @@ public class Book {
 		this.id = id;
 	}
 
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 

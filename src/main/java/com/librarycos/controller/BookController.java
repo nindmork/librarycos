@@ -11,9 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.librarycos.ControllerHelper;
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
+import com.librarycos.entity.User;
 import com.librarycos.service.BookService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.*;
 
@@ -21,7 +25,7 @@ import java.util.*;
 public class BookController {
 	
 	@Autowired private BookService bservice;		
-
+	@Autowired private ControllerHelper controllerHelper;
 	
 	@GetMapping("/")
 	public String home() {
@@ -29,8 +33,11 @@ public class BookController {
 	}
 	
 	@GetMapping("/book_register")
-	public String bookRegister() {
-		return "bookRegister";
+	public String bookRegister(Model model) {
+		Book book =  new Book();
+		model.addAttribute("book",book);
+		model.addAttribute("pageTitle","แก้ไขหนังสือ");
+		return "book_form";
 	}
 	
 	@GetMapping("/available_books")
@@ -67,20 +74,22 @@ public class BookController {
 	
 
 		
-	@PostMapping("/save")
-	public String addBook(@ModelAttribute Book b) {
-		bservice.save(b);
+	@PostMapping("/book/save")
+	public String addBook(@ModelAttribute Book b,HttpServletRequest request) {
+		User user = controllerHelper.getAuthenticatedUser(request);
+		bservice.save(b,user);
 		return "redirect:/available_books";
 	}
 
-	@RequestMapping("/editBook/{id}")
+	@GetMapping("/editBook/{id}")
 	public String editBook(@PathVariable("id") int id,Model model) {
 		Book b = bservice.getBookById(id);
 		model.addAttribute("book",b);
-		return "bookEdit";
+		model.addAttribute("pageTitle","แก้ไขหนังสือ");
+		return "book_form";
 	}
 	
-	@RequestMapping("/deleteBook/{id}")
+	@GetMapping("/deleteBook/{id}")
 	public String deleteBook(@PathVariable("id")int id) {
 		bservice.deleteById(id);
 		return "redirect:/available_books";

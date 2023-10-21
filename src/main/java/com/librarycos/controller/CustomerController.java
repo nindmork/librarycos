@@ -60,8 +60,6 @@ public class CustomerController {
 				redirectAttributes.addFlashAttribute("message", "The customer has been saved sucessfully.");
 		User user = controllerHelper.getAuthenticatedUser(request);
 		customersservice.save(customer, user);
-		int id = user.getId();
-		System.out.println(id);
 		return "redirect:/customers";
 	}
 	

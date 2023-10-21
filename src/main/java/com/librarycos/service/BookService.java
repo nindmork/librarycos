@@ -1,6 +1,7 @@
 package com.librarycos.service;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.librarycos.entity.Book;
 import com.librarycos.entity.Customers;
+import com.librarycos.entity.User;
 import com.librarycos.repository.BookRepository;
 
 
@@ -23,7 +25,8 @@ public class BookService {
 	
 
 
-	public void save(Book b) {
+	public void save(Book b,User user) {
+		b.setUser(user);
 		bRepo.save(b);
 	}
 	

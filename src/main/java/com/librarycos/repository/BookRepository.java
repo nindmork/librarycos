@@ -31,7 +31,7 @@ public interface BookRepository extends JpaRepository<Book,Integer>  {
 	@Query(value = "SELECT * FROM book WHERE id = ?1", nativeQuery = true)
 	public List<Book> getBookID(int id);
 	
-	@Query("SELECT u FROM Book u WHERE CONCAT (u.id,' ',u.name,' ',u.author) LIKE %?1%")
+	@Query("SELECT u FROM Book u WHERE CONCAT (u.id,' ',u.isbn,' ',u.name,' ',u.author) LIKE %?1%")
 	public Page<Book> findAll(String keyword, Pageable pageable);
 	
 	
