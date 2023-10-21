@@ -11,16 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.librarycos.ControllerHelper;
 import com.librarycos.entity.Customers;
 import com.librarycos.entity.User;
-import com.librarycos.service.CustomerNotFoundException;
 import com.librarycos.service.CustomerService;
-import com.librarycos.service.UserNotFoundException;
-import com.librarycos.service.UserService;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -82,8 +79,8 @@ public class CustomerController {
 			@Param("keyword")String keyword) {
 		Page<Customers> page = customersservice.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Customers> listCustomers = page.getContent();
-		long startCount = (pageNum - 1) * customersservice.CUSTOMERS_PER_PAGE + 1;
-		long endCount = startCount + customersservice.CUSTOMERS_PER_PAGE - 1;
+		long startCount = (pageNum - 1) * CustomerService.CUSTOMERS_PER_PAGE + 1;
+		long endCount = startCount + CustomerService.CUSTOMERS_PER_PAGE - 1;
 		if(endCount > page.getTotalElements()) {
 			endCount = page.getTotalElements();
 		}

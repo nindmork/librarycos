@@ -11,70 +11,54 @@
   </head>
   <body>
 	  <nav th:replace="navmenu :: navmenu"></nav>
-
+	<div class="text-center m-5"><h3>การคืน</h3></div>
   <div class="container my-5 col-md-8">
-  		<table class="table  table-striped table-hover">
-  <thead>
+  	<table class="table  table-striped table-hover">
+		<a>ข้อมูลผู้ยืม</a>
+	 <thead>
+		 <tr>
+	      <th scope="col">ชื่อ-นามสกุล</th>
+	      <th scope="col">เบอร์ติดต่อ</th>
+	      <th scope="col">อีเมล์</th>
+	    </tr>
+	 </thead>
+	 <tbody>
+		 <tr>
+	      <td>[[${customers.firstname}]]&nbsp[[${customers.lastname}]]</td>
+	      <td>[[${customers.phonenumber}]]</td>
+	      <td>[[${customers.email}]]</td>
+	    </tr>
+	 </tbody>
+	</table>
+	<table class="table  table-striped table-hover">
+<thead>
     <tr>
-      <th scope="col">อีเมล์</th>
-      <th scope="col">ชื่อ</th>
-      <th scope="col">นามสกุล</th>
-      <th scope="col">รหัสประชาชน</th>
-      <th scope="col">เบอร์โทรศัพท์</th>
+      <th scope="col">รหัสหนังสือ</th>
+       <th scope="col">ISBN</th>
+      <th scope="col">ชื่อหนังสือ</th>
+      <th scope="col">ชื่อผู้แต่ง</th>
+      <th scope="col">จำนวนวันที่ยืมได้</th>
+      <th scope="col">วันยืม</th>
+      <th scope="col">วันครบกำหนดคืน</th>
+      <th scope="col">สถานะการคืน</th>
+      <th scope="col">ดำเนินการ</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-     <tr th:each="c :${customers}">
-      <td th:text="${c.email}"></td>
-      <td th:text="${c.firstname}"></td>
-      <td th:text="${c.lastname}"></td>
-      <td th:text="${c.citynumber}"></td>
-      <td th:text="${c.phonenumber}"></td>
- 
-      <td>
-		<!--<a class="btn btn-secondary btn-sm buttonAddcusid" th:cusid="${c.id}" th:href="@{/my_books/{id}(id=${c.id})}">เลือก</a>-->
-     
-      </td>     
-    </tr>
-   
-  </tbody>
-  
-<thead>
-    <tr>
-      <th scope="col">รหัสหนังสือ</th>
-      <th scope="col">ชื่อหนังสือ</th>
-      <th scope="col">ชื่อผู้แต่ง</th>
-      <th scope="col">จำนวน</th>
-      <th scope="col">วันครบกำหนดคืน</th>
-      <th scope="col">ดำเนินการ</th>
-    </tr>
-  </thead>
-  <tbody>
 	  
-	<tr th:each="b,status : ${book}" th:id="'row' + ${status.count}">
-        <td th:text="${b.id}"></td>
-        <td th:text="${b.name}"></td>
-        <td th:text="${b.author}"></td>
-        <td>
-            <span th:each="r : ${rentaldetail}">
-                <span th:if="${r.book.id == b.id }">
-                    <span th:text="${r.quantity}"></span>
-                </span>
-            </span>
-        </td>
-        <td><span th:each="r : ${rentaldetail}">
-			<span th:each="rtal : ${rental}">
-			<span th:if="${r.order.id == rtal.id && r.book.id == b.id }">
-			<span th:text="${rtal.rentaEndtime}"></span>
-			 </span>
-			 </span>
-			 </span>
-		</td>
-      <td>
-		<a th:each="r : ${rentaldetail}"><a class="btn btn-secondary btn-sm linkrefund" th:delete="@{'refund/' + ${r.id}}" href="#" th:ridd="@{${status.count}}">คืน</a></a>
-		
-      </td>     
+	<tr th:each="b,status : ${rental}" th:id="'row' + ${status.count}">
+        <td th:text="${b.book.id}"></td>
+        <td th:text="${b.book.isbn}"></td>
+        <td th:text="${b.book.name}"></td>
+        <td th:text="${b.book.author}"></td>
+         <td th:text="${b.book.dayofrents}"></td>
+        <td th:text="${b.rentalTime}"></td>
+        <td th:text="${b.rentaEndtime}"></td>
+        <td th:text="${b.status}"></td>
+      	<td>
+      		<a class="btn btn-secondary btn-sm "  th:href="@{'/cartview/'+ ${b.id} }">คืน</a>
+      </td> 
     </tr>  
   </tbody>
 </table>

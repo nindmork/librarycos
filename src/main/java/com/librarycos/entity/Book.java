@@ -1,6 +1,8 @@
 package com.librarycos.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +21,8 @@ public class Book {
 	private String author;
 	private int dayofrents;
 	
+	@Enumerated(EnumType.STRING)
+	private BookStatus status;
 	
 	
 	public Book() {
@@ -33,15 +37,32 @@ public class Book {
 
 
 
-	public Book(int id, String isbn, String name, String author, int dayofrents, User user) {
+	
+	public Book(int id, String isbn, String name, String author, int dayofrents, BookStatus status, User user) {
 		super();
 		this.id = id;
 		this.isbn = isbn;
 		this.name = name;
 		this.author = author;
 		this.dayofrents = dayofrents;
+		this.status = status;
 		this.user = user;
 	}
+
+
+
+	public BookStatus getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(BookStatus status) {
+		this.status = status;
+	}
+
+
+
 
 	@ManyToOne
 	@JoinColumn(name = "users_id")

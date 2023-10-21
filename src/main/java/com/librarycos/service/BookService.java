@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.librarycos.entity.Book;
+import com.librarycos.entity.BookStatus;
 import com.librarycos.entity.Customers;
 import com.librarycos.entity.User;
 import com.librarycos.repository.BookRepository;
@@ -26,6 +27,7 @@ public class BookService {
 
 
 	public void save(Book b,User user) {
+		b.setStatus(BookStatus.พร้อมยืม);
 		b.setUser(user);
 		bRepo.save(b);
 	}
