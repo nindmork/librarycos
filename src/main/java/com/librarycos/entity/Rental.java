@@ -32,7 +32,7 @@ public class Rental {
 	@Enumerated(EnumType.STRING)
 	private RentalStatus status;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "book_id")
 	private Book book;
 	

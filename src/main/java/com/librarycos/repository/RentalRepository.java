@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.librarycos.entity.Customers;
 import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalStatus;
 
 public interface RentalRepository extends JpaRepository<Rental,Integer> , CrudRepository<Rental,Integer>{
 
@@ -20,6 +21,7 @@ public interface RentalRepository extends JpaRepository<Rental,Integer> , CrudRe
 	//public MyBook findByCustomerAndBook(Customers customer, Book book);
 	
 	public List<Rental> findByCustomer(Customers customer);
+	public List<Rental> findByStatus(RentalStatus rentalStatus);
 	
 	@Query(value = "SELECT id FROM rentals WHERE customer_id = ?1", nativeQuery = true)
 	public List<Rental> getIDByCustomerId(int CustomerId);

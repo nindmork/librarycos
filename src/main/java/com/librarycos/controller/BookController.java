@@ -2,23 +2,23 @@ package com.librarycos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.librarycos.ControllerHelper;
 import com.librarycos.entity.Book;
-import com.librarycos.entity.Customers;
+
 import com.librarycos.entity.User;
 import com.librarycos.service.BookService;
+import com.librarycos.service.RentalService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.text.ParseException;
 import java.util.*;
 
 @Controller
@@ -26,6 +26,7 @@ public class BookController {
 	
 	@Autowired private BookService bservice;		
 	@Autowired private ControllerHelper controllerHelper;
+	@Autowired private RentalService rentalService;
 	
 	@GetMapping("/")
 	public String home() {
@@ -41,7 +42,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/available_books")
-	public String getAllBook(Model model) {
+	public String getAllBook(Model model) throws ParseException {
 		return listByPage(1,model,"name","asc", null);
 	}
 	
@@ -50,7 +51,8 @@ public class BookController {
 	public String listByPage(@PathVariable(name = "pageNum")int pageNum,Model model, 
 			@Param("sortField")String sortField, 
 			@Param("sortDir")String sortDir,
-			@Param("keyword")String keyword) {
+			@Param("keyword")String keyword) throws ParseException {
+		rentalService.updateRentalExpired();
 		Page<Book> page = bservice.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Book> listBook = page.getContent();
 		long startCount = (pageNum - 1) * BookService.BOOK_PER_PAGE + 1;

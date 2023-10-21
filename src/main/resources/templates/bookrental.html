@@ -47,10 +47,38 @@
   <table class="table  table-striped table-hover">
   <thead>
     <tr>
-       <th th:replace="fragments :: column_link('id', 'รหัส', 'available_books')"/>
-       <th th:replace="fragments :: column_link('isbn', 'ISBN', 'available_books')"/>
-      <th th:replace="fragments :: column_link('name', 'ชื่อหนังสือ', 'available_books')"/>
-       <th th:replace="fragments :: column_link('author', 'ชื่อผู้แต่ง', 'available_books')"/>
+       <!--<th th:replace="fragments :: column_link('id', 'รหัส', 'book_rental')"/>-->
+       <th>
+       <a class="text-black" 
+		  th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${currentPage} +'?sortField=' + 'id' + '&sortDir='  + ${sortField != 'id' ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}" >รหัส</a>
+		  
+		  <span th:if="${sortField == 'id'}"
+		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>	
+       </th>
+       <!--<th th:replace="fragments :: column_link('isbn', 'ISBN', 'book_rental')"/>-->
+       <th>
+       <a class="text-black" 
+		  th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${currentPage} +'?sortField=' + 'isbn' + '&sortDir='  + ${sortField != 'isbn' ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}" >ISBN</a>
+		  
+		  <span th:if="${sortField == 'isbn'}"
+		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>	
+       </th>
+      <!--<th th:replace="fragments :: column_link('name', 'ชื่อหนังสือ', 'book_rental')"/>-->
+      <th>
+       <a class="text-black" 
+		  th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${currentPage} +'?sortField=' + 'name' + '&sortDir='  + ${sortField != 'name' ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}" >ชื่อหนังสือ</a>
+		  
+		  <span th:if="${sortField == 'name'}"
+		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>	
+       </th>
+       <!--<th th:replace="fragments :: column_link('author', 'ชื่อผู้แต่ง', 'book_rental')"/>-->
+       <th>
+       <a class="text-black" 
+		  th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${currentPage} +'?sortField=' + 'author' + '&sortDir='  + ${sortField != 'author' ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}" >ชื่อผู้แต่ง</a>
+		  
+		  <span th:if="${sortField == 'author'}"
+		  		th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>	
+       </th>
        <th scope="col">จำนวนวันที่ยืมได้</th>
        <th scope="col">เพิ่ม/แก้ไขโดย</th>
       <th scope="col">ดำเนินการ</th>
@@ -66,7 +94,7 @@
       <td th:text="${b.user}"></td> 
       <td>
 	
-      <a class="btn btn-secondary btn-sm "  th:href="@{/cartview}">ยืม</a>
+      <a class="btn btn-secondary btn-sm "  th:href="@{'/cartview/'+ ${b.id} }">ยืม</a>
       </td>     
     </tr>
    
@@ -83,14 +111,14 @@
 	<div th:if="${totalPages > 1}">
 		<nav>
 		  <ul class="pagination justify-content-center">
-			  <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/available_books/page/1?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} } ">First</a></li>
-		    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/available_books/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} }">Previous</a></li>
+			  <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/book_rental/'+ ${customer.id} +'/page/1?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} } ">First</a></li>
+		    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} }">Previous</a></li>
 		    <li  th:class="${currentPage != i ? 'page-item' : 'page-item active'} " 
 		    	th:each="i : ${#numbers.sequence(1, totalPages)}">
-				<a class="page-link" th:href="@{'/customers/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a></li>
+				<a class="page-link" th:href="@{'/book_rental/' +${customer.id} + '/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a></li>
 		    
-		    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/available_books/page/' + ${currentPage + 1 } + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}} ">Next</a></li>
-		  	<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/available_books/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a></li>
+		    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${currentPage + 1 } + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}} ">Next</a></li>
+		  	<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/book_rental/'+ ${customer.id} +'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a></li>
 		  </ul>
 		</nav>
 	</div>

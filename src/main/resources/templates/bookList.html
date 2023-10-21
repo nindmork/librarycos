@@ -30,6 +30,7 @@
     <tr>
        <th th:replace="fragments :: column_link('id', 'รหัส', 'available_books')"/>
        <th th:replace="fragments :: column_link('isbn', 'ISBN', 'available_books')"/>
+       <th th:replace="fragments :: column_link('status', 'สถานะหนังสือ', 'available_books')"/>
       <th th:replace="fragments :: column_link('name', 'ชื่อหนังสือ', 'available_books')"/>
        <th th:replace="fragments :: column_link('author', 'ชื่อผู้แต่ง', 'available_books')"/>
        <th scope="col">จำนวนวันที่ยืมได้</th>
@@ -41,6 +42,7 @@
     <tr th:each="b :${book}">
       <td th:text="${b.id}"></td>
       <td th:text="${b.isbn}"></td>
+      <td th:text="${b.status}"></td>
       <td th:text="${b.name}"></td>
       <td th:text="${b.author}"></td>
       <td th:text="${b.dayofrents}"></td> 

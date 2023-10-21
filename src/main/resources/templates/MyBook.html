@@ -11,7 +11,7 @@
   </head>
   <body>
 	  <nav th:replace="navmenu :: navmenu"></nav>
-
+	<div class="text-center m-5"><h3>เลือกรายชื่อผู้คืน</h3></div>
   <div class="container my-5 col-md-8">
 	  
 	  <div>
@@ -46,7 +46,7 @@
       <td th:text="${c.phonenumber}"></td>
  
       <td>
-		<a class="btn btn-secondary btn-sm buttonAddcusid" th:cusid="${c.id}" th:href="@{/my_books/{id}(id=${c.id})}">เลือก</a>
+		<a class="btn btn-secondary btn-sm buttonAddcusid" th:cusid="${c.id}" th:href="@{/my_books/{id}(id=${rental.id})}">เลือก</a>
      
       </td>     
     </tr>
