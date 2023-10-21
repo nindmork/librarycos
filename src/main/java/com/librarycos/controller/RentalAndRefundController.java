@@ -58,12 +58,12 @@ public class RentalAndRefundController {
 	
 	
 	
-	@GetMapping("/book_rental/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum")int pageNum,Model model, 
+	@GetMapping("/book_rental/{customerid}/page/{pageNum}")
+	public String listByPage(@PathVariable(name = "customerid")String customerId,@PathVariable(name = "pageNum")int pageNum,Model model, 
 			@Param("sortField")String sortField, 
 			@Param("sortDir")String sortDir,
-			@Param("keyword")String keyword,
-			String customerId) {
+			@Param("keyword")String keyword
+			) {
 		Page<Book> page = bservice.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Book> listBook = page.getContent();
 		long startCount = (pageNum - 1) * BookService.BOOK_PER_PAGE + 1;
@@ -93,7 +93,7 @@ public class RentalAndRefundController {
 	
 	@GetMapping("/book_rental/{customerid}")
 	public String getAllBookrental(Model model, HttpServletResponse response,@PathVariable("customerid")String customerId) {
-		/*/// create a cookie
+		/// create a cookie
 	    Cookie cookie = new Cookie("customerid", customerId);
 	    cookie.setPath("/cartview");
 	    //add a cookie to the response
@@ -102,6 +102,6 @@ public class RentalAndRefundController {
 		/*List<Book>list=bservice.getAllBook();	
 		return new ModelAndView("bookrental","book",list);*/
 		
-	    return listByPage(1,model,"name","asc", null, customerId);
+	    return listByPage(customerId,1,model,"name","asc", null );
 	}
 }

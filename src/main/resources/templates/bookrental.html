@@ -33,7 +33,7 @@
 	</div>
   <div class="container my-5 col-md-8">
 	  <div>
-		<form th:action="@{/book_rental/page/1}" class="form-inline m-3">
+		<form th:action="@{'/book_rental/' + ${customer.id} + '/page/1'}" class="form-inline m-3">
 			<input type="hidden" name="sortField" th:value="${sortField}"/>
 			<input type="hidden" name="sortDir" th:value="${sortDir}"/>
 			ค้นหา: &nbsp;
@@ -107,7 +107,7 @@
 		
 	<script type="text/javascript">
 		function clearFilter(){
-			window.location = "[[@{/available_books}]]";
+			window.location = "[[@{/book_rental/{id}(id=${customer.id})}]]";
 		}
 	</script>
   </body>
