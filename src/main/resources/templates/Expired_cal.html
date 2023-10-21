@@ -11,7 +11,7 @@
   </head>
   <body>
 	  <nav th:replace="navmenu :: navmenu"></nav>
-	<div class="text-center m-5"><h3>การคืน</h3></div>
+	<div class="text-center m-5"><h3>คำนวนค่าปรับ</h3></div>
   <div class="container my-5 col-md-8">
   	<table class="table  table-striped table-hover">
 		<a>ข้อมูลผู้ยืม</a>
@@ -42,7 +42,6 @@
       <th scope="col">วันครบกำหนดคืน</th>
       <th scope="col">เจ้าหน้าที่ผู้ยืม</th>
       <th scope="col">สถานะการคืน</th>
-      <th scope="col">ดำเนินการ</th>
       
     </tr>
   </thead>
@@ -57,47 +56,29 @@
         <td th:text="${b.rentaEndtime}"></td>
         <td th:text="${b.userrent.firstName}"></td>
         <td th:text="${b.status}"></td>
-      	<td>
-      		<a class="btn btn-secondary btn-sm "  th:href="@{'/refund/'+ ${b.id} }">คืน</a>
-      </td> 
     </tr>  
   </tbody>
 </table>
-<div class="container my-5">
-<table class="table  table-striped table-hover ">
-	<a>ประวัติการยืม</a>
-<thead>
-    <tr>
-      <th scope="col">รหัสหนังสือ</th>
-       <th scope="col">ISBN</th>
-      <th scope="col">ชื่อหนังสือ</th>
-      <th scope="col">ชื่อผู้แต่ง</th>
-      <th scope="col">จำนวนวันที่ยืมได้</th>
-      <th scope="col">วันยืม</th>
-      <th scope="col">วันครบกำหนดคืน</th>
-      <th scope="col">เจ้าหน้าที่ผู้ยืม</th>
-      <th scope="col">เจ้าหน้าที่ผู้คืน</th>
-      <th scope="col">สถานะการคืน</th>
-      
-    </tr>
-  </thead>
-  <tbody> 
-	<tr th:each="b,status : ${hisRentals}" th:id="'row' + ${status.count}">
-        <td th:text="${b.book.id}"></td>
-        <td th:text="${b.book.isbn}"></td>
-        <td th:text="${b.book.name}"></td>
-        <td th:text="${b.book.author}"></td>
-         <td th:text="${b.book.dayofrents}"></td>
-        <td th:text="${b.rentalTime}"></td>
-        <td th:text="${b.rentaEndtime}"></td>
-        <td th:text="${b.userrent.firstName}"></td>
-        <td th:text="${b.userrefund.firstName}"></td>
-        <td th:text="${b.status}"></td>
-    </tr>  
-  </tbody>
-</table>
-</div>
+<div class="container my-5 col-md-15  ">
+	<div class="row">
+	<div class="col-sm "> 
+    </div>
+    <div class="col-sm "> 
+    </div>
+    <div class="col-sm">		
+      <div class="text-center">จำนวนวันที่เกิน</div>
+      <div class="text-center">[[${Days}]]</div>
+    </div>
+    <div class="col-sm">
+	 <div class="text-center">ยอดต้องชำระ(วันละ10บ.)</div>
+	 <div class="text-center">[[${Price}]]</div>
+    </div>
+    <div class="col-sm">
+     <a class="btn btn-primary checkOut" th:href="@{'/refundex/'+ ${rental.id}}" >ยืนยัน</a>
+    </div>
   </div>
+  </div>
+  
 
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

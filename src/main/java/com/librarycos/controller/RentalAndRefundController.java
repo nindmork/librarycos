@@ -20,6 +20,7 @@ import com.librarycos.entity.Book;
 import com.librarycos.entity.BookStatus;
 import com.librarycos.entity.Customers;
 import com.librarycos.entity.Rental;
+import com.librarycos.entity.RentalStatus;
 import com.librarycos.entity.User;
 import com.librarycos.service.BookService;
 import com.librarycos.service.CustomerService;
@@ -221,16 +222,69 @@ public class RentalAndRefundController {
 		Customers customer = customerService.getById(customerId);
 		List<Rental> rentals = rentalService.listRental(customer);
 		List<Book> booklist = new ArrayList<>();
-
+		List<Rental> newRentalslist = new ArrayList<>();
+		List<Rental> hisRentalslist = new ArrayList<>();
 		for(Rental rental : rentals) {
-			Book book = rental.getBook();
-			booklist.add(book);
-
+			if(rental.getStatus()!=RentalStatus.คืนแล้ว) {
+				newRentalslist.add(rental);
+			}
+			else {
+				hisRentalslist.add(rental);
+			}
 		}
 		showModel.addAttribute("customers",customer);
-		showModel.addAttribute("book",booklist);
-		showModel.addAttribute("rental",rentals);
-		
+		showModel.addAttribute("rental",newRentalslist);
+		showModel.addAttribute("hisRentals",hisRentalslist);
 		return "/MyBook2";
 	}
+	
+	@GetMapping("/refund/{rentalid}")
+	public String refund(Model model,HttpServletResponse response,	
+			HttpServletRequest request,
+			@PathVariable("rentalid")String rentalId) throws ParseException {
+		Rental rental = rentalService.findById(Integer.valueOf(rentalId));
+		User user = controllerHelper.getAuthenticatedUser(request);
+		if(rental.getStatus()== RentalStatus.เกินกำหนด) {
+			return expiredCal(model, response, rentalId);
+		}else
+			rentalService.refund(rental, user);
+			return "refund_completed";	
+	}
+	
+	public String expiredCal(Model model,HttpServletResponse response,
+			@PathVariable("rentalid")String rentalId) {
+		Rental rental = rentalService.findById(Integer.valueOf(rentalId));
+		Customers customer = rental.getCustomer();
+		Date currentTime = new Date();
+		Date pastTime = rental.getRentaEndtime();
+		long timeDifferenceInMillis = pastTime.getTime() - currentTime.getTime(); 
+		// แปลงเป็นวินาที
+		long timeDifferenceInSeconds = timeDifferenceInMillis / 1000;
+		// แปลงเป็นนาที
+		long timeDifferenceInMinutes = timeDifferenceInSeconds / 60;
+		// แปลงเป็นชั่วโมง
+		long timeDifferenceInHours = timeDifferenceInMinutes / 60;
+		// แปลงเป็นวัน
+		long timeDifferenceInDays = timeDifferenceInHours / 24;
+		long price = timeDifferenceInDays * 10;
+		model.addAttribute("Days",timeDifferenceInDays);
+		model.addAttribute("Price",price);
+		model.addAttribute("customers",customer);
+		model.addAttribute("rental",rental);
+		return "Expired_cal";
+	}
+	
+	@GetMapping("/refundex/{rentalid}")
+	public String refundExpired(Model model,HttpServletResponse response,	
+			HttpServletRequest request,
+			@PathVariable("rentalid")String rentalId) throws ParseException {
+		Rental rental = rentalService.findById(Integer.valueOf(rentalId));
+		User user = controllerHelper.getAuthenticatedUser(request);
+		if(rental.getStatus()== RentalStatus.เกินกำหนด) {
+			rentalService.refund(rental, user);
+			return "refund_completed";
+		}
+		return refund(model,response,request,rentalId);
+	}
+		
 }

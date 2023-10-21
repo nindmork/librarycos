@@ -19,7 +19,7 @@ public interface RentalRepository extends JpaRepository<Rental,Integer> , CrudRe
 	
 	//public List<MyBook> findByCustomer(Customers customer);
 	//public MyBook findByCustomerAndBook(Customers customer, Book book);
-	
+	public Rental findById(int id);
 	public List<Rental> findByCustomer(Customers customer);
 	public List<Rental> findByStatus(RentalStatus rentalStatus);
 	

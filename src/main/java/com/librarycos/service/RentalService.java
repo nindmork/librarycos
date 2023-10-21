@@ -39,7 +39,7 @@ public class RentalService {
 	public boolean checkRentalExpired(Date getRentaEndtime) throws ParseException{
 		
 		//สร้างวันที่ปลอมไว้เช็ค
-		String dateString = "Sat Oct 25 17:16:24 ICT 2023";
+		String dateString = "Sat Oct 28 17:16:24 ICT 2023";
 		SimpleDateFormat format = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
 		Date fakedate = format.parse(dateString);
 		//
@@ -99,12 +99,21 @@ public class RentalService {
 			}
 		}
 	}
-/*	
- * 
 	
-	public List<RentalDetail> listRentalDetail(Rental rental) {
-		return repoD.findByOrder(rental);
-	}*/
+	public Rental findById(int id) {
+		return repo.findById(id);
+	}
 	
+	public void refund(Rental rental, User user) {
+		if(rental.getStatus()!= RentalStatus.คืนแล้ว) {
+			rental.setUserrefund(user);
+			rental.setStatus(RentalStatus.คืนแล้ว);
+			Book book = rental.getBook();
+			book.setStatus(BookStatus.พร้อมยืม);
+			repo.save(rental);
+			bRepo.save(book);		
+		}
+
+	}
 	
 }
