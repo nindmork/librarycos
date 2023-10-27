@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,20 +36,22 @@ public class User {
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
 	
-	@Column(length = 64)
-	private String photos;
 	
 	private boolean enabled;
 	
-	
+	/*
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "users_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 			)
-	
 	private Set<Role> roles = new HashSet<>();
+	*/
+	
+	@ManyToOne
+	@JoinColumn(name = "roles_id")
+	private Role roles ;
 
 	public User() {
 		
@@ -106,13 +110,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(String photos) {
-		this.photos = photos;
-	}
 
 	public boolean isEnabled() {
 		return enabled;
@@ -121,7 +118,7 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
+	/*
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -133,16 +130,22 @@ public class User {
 	public void addRole(Role role) {
 		this.roles.add(role);
 	}
-
+	*/
 	@Override
 	public String toString() {
 		return  firstName + " " + lastName + " " + roles ;
 	}
+
 	
-	public String getPhotosImagePath() {
-		if (id == null || photos == null ) return "/images/default-image.png";
-		return "/user-photos " + this.id + "/ " + this.photos;
+	public Role getRoles() {
+		return roles;
 	}
+
+	public void setRoles(Role roles) {
+		this.roles = roles;
+	}
+	
+	
 	
 	
 	

@@ -105,19 +105,19 @@ public class UserController {
 	
 	
 	
-	@PostMapping("/account/update")
+	/*@PostMapping("/account/update")
 	public String saveDetails(User user, RedirectAttributes redirectAttributes,
 			BookUserDetails loggedUser,
 			@RequestParam("image") MultipartFile multipartFile) throws IOException {
 		if (!multipartFile.isEmpty()) {
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-			user.setPhotos(fileName);
+			//user.setPhotos(fileName);
 			User savedUser = service.updateAccount(user);
 			//String uploadDir = "user-photos/" + savedUser.getId();
 			//FileUploadUtil.cleanDir(uploadDir);
 		//	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		}else {
-			if (user.getPhotos().isEmpty()) user.setPhotos(null);
+			//if (user.getPhotos().isEmpty()) user.setPhotos(null);
 			service.updateAccount(user);
 		}
 		loggedUser.setFirstName(user.getFirstName());
@@ -125,7 +125,7 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", "Your account details have been updated.");
 		return "redirect:/account";
 		
-	}
+	}*/
 	
 	@GetMapping("/users/edit/{id}")
 	public String editUser(@PathVariable(name ="id") Integer id ,

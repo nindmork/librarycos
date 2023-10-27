@@ -2,7 +2,9 @@ package com.bookStore;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import com.librarycos.repository.CustomerRepository;
 import com.librarycos.repository.UserRepository;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 
@@ -30,6 +33,7 @@ import org.springframework.data.domain.Pageable;
 @Rollback(false)
 public class UserRepositoryTests {
 
+	private User user;
 	@Autowired
 	private UserRepository repo;
 	
@@ -39,7 +43,8 @@ public class UserRepositoryTests {
 	@Autowired
 	private TestEntityManager entityManager;
 	
-
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Test
 	public void testCreateUserWithOneRole() {
@@ -104,6 +109,20 @@ public class UserRepositoryTests {
 		User user = repo.getUserByEmail(email);
 		assertThat(user).isNotNull();
 	}
+	
+	@Test
+	public void testfindAllUserRole() {
+		Set<Role> roles = user.getRoles();
+		
+		List<SimpleGrantedAuthority> authories = new ArrayList<>();
+		
+		for (Role role : roles) {
+			authories.add(new SimpleGrantedAuthority(role.getName()));
+		}
+		
+	}
+	
+	
 	/*	@Test
 	public void rentalfindBycus(){
 		int customerId = 2;

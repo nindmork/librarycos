@@ -26,7 +26,7 @@ public class RentalService {
 	
 	
 	@Autowired private RentalRepository repo;
-	@Autowired private BookService bService;
+
 	@Autowired private BookRepository bRepo;
 
 	public Date calculateRentalEndTime(Date rentalStartTime, int rentalDays) {
@@ -113,7 +113,6 @@ public class RentalService {
 			repo.save(rental);
 			bRepo.save(book);		
 		}
-
 	}
 	
 }
