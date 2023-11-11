@@ -177,12 +177,12 @@ public class RentalAndRefundController {
 			bookidcookie.setValue(null);
 			response.addCookie(bookidcookie);
 			}
-		return "/rental_completed";
+		return "rental_completed";
 	}
 			
 	@GetMapping("/rental_completed")
 	public String rental_completed() {	
-		return "/rental_completed";
+		return "rental_completed";
 	}
 	
 	@GetMapping("/my_books")
