@@ -79,8 +79,8 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-plugins</artifactId>
-				<version>39</version>
+				<artifactId>maven-surefire-plugin</artifactId>
+				
 			</plugin>
 		</plugins>
 	</build>
