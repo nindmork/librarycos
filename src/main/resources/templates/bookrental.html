@@ -94,7 +94,7 @@
       <td th:text="${b.user}"></td> 
       <td>
 	
-      <a class="btn btn-secondary btn-sm "  th:href="@{'/cartview/'+ ${b.id} }">ยืม</a>
+      <a class="btn btn-secondary btn-sm "  th:href="@{'/cartview/'+${b.id}}">ยืม</a><!--"@{/book_rental/{id}(id=${c.id})}"-->
       </td>     
     </tr>
    

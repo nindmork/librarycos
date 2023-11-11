@@ -128,7 +128,7 @@ public class RentalAndRefundController {
 	
 	@GetMapping("/cartview/{bookid}")
 	public String ViewCart(Model model,HttpServletResponse response,@CookieValue(value = "customerid", defaultValue = "") String customerId,@PathVariable("bookid")String bookId) throws ParseException {
-		/*rentalService.updateRentalExpired();
+	rentalService.updateRentalExpired();
 		Integer book_id = Integer.valueOf(bookId);
 		Book book = bservice.getBookById(book_id);
 		Integer customerIdi = Integer.valueOf(customerId);
