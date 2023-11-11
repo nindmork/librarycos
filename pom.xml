@@ -69,11 +69,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.shopme</groupId>
-			<artifactId>ShopmeBackEnd</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
