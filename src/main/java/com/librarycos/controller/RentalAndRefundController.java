@@ -153,7 +153,7 @@ public class RentalAndRefundController {
 			model.addAttribute("customer",customer);
 			model.addAttribute("rental",rental);
 		}
-		return "/cartview";
+		return "cartview";
 	}
 	
 	
@@ -234,7 +234,7 @@ public class RentalAndRefundController {
 		showModel.addAttribute("customers",customer);
 		showModel.addAttribute("rental",newRentalslist);
 		showModel.addAttribute("hisRentals",hisRentalslist);
-		return "/MyBook2";
+		return "MyBook2";
 	}
 	
 	@GetMapping("/refund/{rentalid}")
