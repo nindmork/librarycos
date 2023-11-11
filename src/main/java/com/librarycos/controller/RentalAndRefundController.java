@@ -152,7 +152,7 @@ public class RentalAndRefundController {
 		    model.addAttribute("book",book);
 			model.addAttribute("customer",customer);
 			model.addAttribute("rental",rental);
-		}*/
+		}
 		return "/cartview";
 	}
 	
