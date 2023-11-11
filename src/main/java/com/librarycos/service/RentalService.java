@@ -83,14 +83,14 @@ public class RentalService {
 				if (isPastEnd ) {
 					rental.setStatus(RentalStatus.เกินกำหนด);
 					repo.save(rental);
-					System.out.println(rental.getStatus());
+					//System.out.println(rental.getStatus());
 					book.setStatus(BookStatus.ถูกยืมแล้ว);
 					bRepo.save(book);
 				}else {
 					rental.setStatus(RentalStatus.กำลังยืม);
 					book.setStatus(BookStatus.ถูกยืมแล้ว);
 					repo.save(rental);
-					System.out.println(rental.getStatus()); 
+					//System.out.println(rental.getStatus()); 
 					bRepo.save(book);
 				}
 				
