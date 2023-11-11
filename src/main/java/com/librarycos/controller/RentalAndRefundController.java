@@ -112,7 +112,7 @@ public class RentalAndRefundController {
 	
 	
 	@GetMapping("/book_rental/{customerid}")
-	public String getAllBookrental(Model model, HttpServletResponse response,@PathVariable("customerid")String customerId) {
+	public String getAllBookrental(Model model, HttpServletResponse response,@PathVariable("customerid")String customerId) throws ParseException{
 		/// create a cookie
 	    Cookie cookie = new Cookie("customerid", customerId);
 	    cookie.setPath("/cartview");
