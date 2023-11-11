@@ -1,0 +1,1 @@
+java -Dserver.port=$PORT - java $PATH_TO_JAR
