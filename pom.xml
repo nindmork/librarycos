@@ -81,14 +81,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-				<excludes><exclude>**.java</exclude></excludes>
+				<excludes><exclude>**/*.java</exclude></excludes>
 				</configuration>
 			</plugin>
-			 <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            
-        </plugin>
+
 		</plugins>
 	</build>
 
