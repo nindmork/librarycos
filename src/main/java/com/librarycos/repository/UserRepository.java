@@ -10,7 +10,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.librarycos.entity.Book;
 import com.librarycos.entity.User;
 
 
@@ -18,6 +17,9 @@ import com.librarycos.entity.User;
 public interface UserRepository extends PagingAndSortingRepository<User, Integer>, CrudRepository <User, Integer> {
 	@Query("SELECT u FROM User u WHERE u.email = :email")
 	public User getUserByEmail(@Param("email") String email);
+	
+	@Query("SELECT u FROM User u WHERE u.firstName = :firstName")
+	public User getUserByFirstName(@Param("firstName") String firstName);
 
 	public Long countById(Integer id);
 	
@@ -32,4 +34,9 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 	@Query(value = "SELECT roles_id FROM users", nativeQuery = true)
 	public List<User> findUserRole();
 	
+	
+	
+	
 }
+
+

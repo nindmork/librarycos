@@ -17,14 +17,6 @@ public class BookUserDetailsService implements UserDetailsService{
 		return userRepo.getUserByEmail(email);
 	}
 	
-	/*@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userRepo.getUserByEmail(email);
-		if (user != null) {
-			return new BookUserDetails(user);
-		}
-		throw new UsernameNotFoundException("Could not find user with email: " + email);
-	}*/
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -11,9 +11,11 @@
   </head>
   <body>
     <nav th:replace="navmenu :: navmenu"></nav>
+    <div th:if="${message != null}" class="alert alert-danger text-center">[[${message}]] </div>
     <div class="text-center m-5"><h3>[[${pageTitle}]]</h3></div>
+    
 	<form th:action="@{/customer/save}" method="post" style="max-width: 700px; margin: 0 auto"
-		th:object="${customer}" >
+		th:object="${customer}"  >
 			<input type="hidden" th:field="*{id}" />
 			<div class="border border-secondary rounded p-3">
 				<div class="form-group row">
@@ -59,6 +61,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    
+  <!--  <script type="text/javascript">
+
+		moduleURL = "[[@{/users}]]";
+
+		function checkEmailUnique(form) {
+			url = "[[@{/customer/check_email}]]";
+			userEmail = $("#email").val();
+			userId = $("#id").val();
+			csrfValue = $("input[name='_csrf']").val();
+
+			params = {id: userId, email: userEmail, _csrf: csrfValue};
+
+			$.post(url, params, function (response) {
+				if (response == "OK") {
+					form.submit();
+				} else if (response == "Duplicated") {
+					alert("อีเมล์ " + userEmail + " มีผู้ใช้แล้ว");
+				} else {
+					alert("Unknown response from server");
+				}
+			}).fail(function () {
+				alert("Could not connect to the server");
+			});
+
+			return false;
+		}
+   </script>-->
   </body>
 </html>	

@@ -12,7 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import com.librarycos.ControllerHelper;
 import com.librarycos.entity.Book;
 
+
 import com.librarycos.entity.User;
+import com.librarycos.repository.BookRepository;
+import com.librarycos.repository.BookRepository.BookAndPrice2;
+import com.librarycos.repository.BookRepository.BookCus;
+import com.librarycos.repository.CustomerRepository;
+
 import com.librarycos.service.BookService;
 import com.librarycos.service.RentalService;
 
@@ -27,6 +33,9 @@ public class BookController {
 	@Autowired private BookService bservice;		
 	@Autowired private ControllerHelper controllerHelper;
 	@Autowired private RentalService rentalService;
+	@Autowired private BookRepository bookRepo ;
+	@Autowired private CustomerRepository cusRepo ;	
+	
 	
 	@GetMapping("/")
 	public String home() {
@@ -95,6 +104,33 @@ public class BookController {
 	public String deleteBook(@PathVariable("id")int id) {
 		bservice.deleteById(id);
 		return "redirect:/available_books";
+	}
+	
+	@GetMapping("/report1") 
+	public String listbookwithExpiredPrice(Model model){
+		List<BookAndPrice2> BookAndp = bookRepo.findBookWithPrice();
+		model.addAttribute("BookAndp",BookAndp);
+		return "report1";
+		
+	}
+	
+	@GetMapping("/report2")
+	public String listfindBookAndCustomerWithStatus(Model model){
+		List<BookCus> BookCuslist = bookRepo.findBookAndCustomerWithStatus();
+		
+		model.addAttribute("bookcus",BookCuslist);
+		return "report2";
+	}
+	
+	@GetMapping("/report4")
+	public String ShowCusAndUserwithRental(Model model){
+		List<Object[]> cususerlist = cusRepo.findCusAndUserHasRental();
+		List<Object[]> cususerlist2 =cusRepo.findCusAndUserNotHasRental();
+		//คนที่ยืม
+		model.addAttribute("cususerlist",cususerlist);
+		//คนทีไม่ได้่ยืม
+		model.addAttribute("cususerlist2",cususerlist2);
+		return "report4";
 	}
 	
 }

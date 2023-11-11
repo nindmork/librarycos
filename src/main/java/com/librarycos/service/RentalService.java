@@ -2,6 +2,7 @@ package com.librarycos.service;
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +40,7 @@ public class RentalService {
 	public boolean checkRentalExpired(Date getRentaEndtime) throws ParseException{
 		
 		//สร้างวันที่ปลอมไว้เช็ค
-		String dateString = "Sat Oct 28 17:16:24 ICT 2023";
+		String dateString = "Sat Nov 18 17:16:24 ICT 2023";
 		SimpleDateFormat format = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
 		Date fakedate = format.parse(dateString);
 		//
@@ -100,6 +101,24 @@ public class RentalService {
 		}
 	}
 	
+	public Object[] expiredCalService(Rental rental) {
+		Date pastTime = rental.getRentaEndtime();	
+		Date currentTime = new Date();
+		long timeDifferenceInMillis = pastTime.getTime() - currentTime.getTime(); 
+		// แปลงเป็นวินาที
+		long timeDifferenceInSeconds = timeDifferenceInMillis / 1000;
+		// แปลงเป็นนาที
+		long timeDifferenceInMinutes = timeDifferenceInSeconds / 60;
+		// แปลงเป็นชั่วโมง
+		long timeDifferenceInHours = timeDifferenceInMinutes / 60;
+		// แปลงเป็นวัน
+		long timeDifferenceInDays = timeDifferenceInHours / 24;
+		long price = timeDifferenceInDays * 10;
+
+		return new Object[]{timeDifferenceInDays, price};
+		
+		
+	}
 	public Rental findById(int id) {
 		return repo.findById(id);
 	}

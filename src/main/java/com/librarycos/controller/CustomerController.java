@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -54,10 +55,19 @@ public class CustomerController {
 	@PostMapping("/customer/save")
 	public String saveCustomer(Customers customer,HttpServletRequest request, RedirectAttributes redirectAttributes
 			) throws IOException {
-				redirectAttributes.addFlashAttribute("message", "The customer has been saved sucessfully.");
-		User user = controllerHelper.getAuthenticatedUser(request);
-		customersservice.save(customer, user);
-		return "redirect:/customers";
+		try{
+			User user = controllerHelper.getAuthenticatedUser(request);
+			customersservice.save(customer, user);
+			redirectAttributes.addFlashAttribute("message", "The customer has been saved sucessfully.");
+			return "redirect:/customers";
+		}
+		catch (DataIntegrityViolationException ex) {
+			        
+			  redirectAttributes.addFlashAttribute("message", "ไม่สามารถใช้อีเมล์นี้ได้ เนื่องจากมีผู้ใช้แล้ว");
+			  return "redirect:/customer/new";
+		}
+		
+		
 	}
 	
 	@GetMapping("/customers")

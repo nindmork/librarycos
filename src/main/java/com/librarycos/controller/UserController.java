@@ -6,22 +6,20 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.librarycos.entity.Role;
 import com.librarycos.entity.User;
-import com.librarycos.security.BookUserDetails;
 import com.librarycos.service.UserNotFoundException;
 import com.librarycos.service.UserService;
 
@@ -91,41 +89,24 @@ public class UserController {
 	@PostMapping("/users/save")
 	public String saveUser(User user, RedirectAttributes redirectAttributes
 			) throws IOException {
-
-		redirectAttributes.addFlashAttribute("message", "The user has been saved sucessfully.");
-
-		service.save(user);
-		return getRedirectURLtoAffectedUser(user);
+		try{
+			service.save(user);
+			redirectAttributes.addFlashAttribute("message", "The user has been saved sucessfully.");
+			return getRedirectURLtoAffectedUser(user);
+		}catch (DataIntegrityViolationException ex) {
+	        
+	        redirectAttributes.addFlashAttribute("message", "ไม่สามารถใช้อีเมล์นี้ได้ เนื่องจากมีผู้ใช้แล้ว");
+	        return "redirect:/users/new";
+	    }
+		
+		
+		
 	}
 	
 	private String getRedirectURLtoAffectedUser(User user) {
 		String firstPartOfEmail = user.getEmail().split("@")[0];
 		return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail;
 	}
-	
-	
-	
-	/*@PostMapping("/account/update")
-	public String saveDetails(User user, RedirectAttributes redirectAttributes,
-			BookUserDetails loggedUser,
-			@RequestParam("image") MultipartFile multipartFile) throws IOException {
-		if (!multipartFile.isEmpty()) {
-			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-			//user.setPhotos(fileName);
-			User savedUser = service.updateAccount(user);
-			//String uploadDir = "user-photos/" + savedUser.getId();
-			//FileUploadUtil.cleanDir(uploadDir);
-		//	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		}else {
-			//if (user.getPhotos().isEmpty()) user.setPhotos(null);
-			service.updateAccount(user);
-		}
-		loggedUser.setFirstName(user.getFirstName());
-		loggedUser.setLastName(user.getLastName());
-		redirectAttributes.addFlashAttribute("message", "Your account details have been updated.");
-		return "redirect:/account";
-		
-	}*/
 	
 	@GetMapping("/users/edit/{id}")
 	public String editUser(@PathVariable(name ="id") Integer id ,
@@ -145,17 +126,21 @@ public class UserController {
 		}
 	
 	@GetMapping("/users/delete/{id}")
-	public String deleteUser(@PathVariable(name ="id") Integer id ,
-		Model model, 
-		RedirectAttributes redirectAttributes) {
-		try {
-			service.delete(id);
-			redirectAttributes.addFlashAttribute("message","The user ID" +id+ "has been deleted sucessfully");
-		}catch (UserNotFoundException ex) {
-			redirectAttributes.addFlashAttribute("message", ex.getMessage());
-			
-		}return "redirect:/users";
+	public String deleteUser(@PathVariable(name ="id") Integer id,Model model,RedirectAttributes redirectAttributes)  {
+	    try {
+	        service.delete(id);
+	        redirectAttributes.addFlashAttribute("message", "The user ID " + id + " has been deleted successfully");
+	        
+	    } catch (DataIntegrityViolationException ex) {
+	        
+	        redirectAttributes.addFlashAttribute("message", "ไม่สามารถลบเจ้าหน้า ID " + id + " เนื่องจากถูก referenced in other records.");
+	    }catch (UserNotFoundException ex) {
+
+	        redirectAttributes.addFlashAttribute("message", ex.getMessage());    
+	    }
+	    return "redirect:/users";
 	}
+
 	
 	@GetMapping("/users/{id}/enabled/{status}")
 	public String updateUserEnabledStatus(@PathVariable("id") Integer id,

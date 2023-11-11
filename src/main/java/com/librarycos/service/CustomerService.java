@@ -23,7 +23,7 @@ public class CustomerService {
 	private CustomerRepository customerRepo;
 	
 	public Customers getByEmail (String email) {
-		return customerRepo.getUserByEmail(email);
+		return customerRepo.getCustomersByEmail(email);
 	}
 	public Customers getById(Integer id) {		
 		return customerRepo.getReferenceById(id);
@@ -53,4 +53,20 @@ public class CustomerService {
 		return customerRepo.findAll(pageable);
 	}
 	
+	public boolean isEmailUnique(Integer id, String email) {
+		Customers cusByEmail = customerRepo.getCustomersByEmail(email);
+		
+		if (cusByEmail == null) return true;
+		
+		boolean isCreatingNew = (id == null);
+		
+		if (isCreatingNew) {
+			if (cusByEmail != null) return false;
+		} else {
+			if (cusByEmail.getId() != id) {
+				return false;
+			}
+		}	
+		return true;
+	}
 }

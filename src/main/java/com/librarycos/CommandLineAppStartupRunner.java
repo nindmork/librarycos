@@ -16,4 +16,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     	rentalervice.updateRentalExpired();
 
     }
+    
+    
+    
 }

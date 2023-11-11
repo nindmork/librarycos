@@ -1,5 +1,4 @@
-package com.bookStore;
-
+package com.librarycos;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -20,19 +19,18 @@ import com.librarycos.entity.Customers;
 import com.librarycos.entity.Role;
 import com.librarycos.entity.User;
 import com.librarycos.repository.CustomerRepository;
+import com.librarycos.repository.RoleRepository;
 import com.librarycos.repository.UserRepository;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-
-
 
 @DataJpaTest(showSql = false)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 public class UserRepositoryTests {
 
+	
 	private User user;
 	@Autowired
 	private UserRepository repo;
@@ -49,10 +47,10 @@ public class UserRepositoryTests {
 	@Test
 	public void testCreateUserWithOneRole() {
 		Role roleAdmin = entityManager.find(Role.class, 1);
-		User userMork = new User("admin@gmail.com","Admin123","Admin", "Admin Book");
-		userMork.addRole(roleAdmin);
+		User userMork = new User("Staff@gmail.com","Staff123","Staff", "Staff123");
 		User savedUser = repo.save(userMork);
 		assertThat(savedUser.getId()).isGreaterThan(0);
+		System.out.println("test");
 	}
 	
 	@Test

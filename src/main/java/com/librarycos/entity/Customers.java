@@ -2,6 +2,7 @@ package com.librarycos.entity;
 
 import java.util.Date;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,8 @@ public class Customers {
 	private String phonenumber;
 	
 	private Date risgisDate;
-	
+
+	//@ManyToOne(cascade = CascadeType.ALL) ต้องไม่ใส่ถ้าใสจะลบ user ได้และค่่่่าเป็น null
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -80,6 +82,11 @@ public class Customers {
 
 	public String getFirstname() {
 		return firstname;
+	}
+	
+	public String getcusFirstname() {
+		String cusFirstname = firstname;
+		return cusFirstname;
 	}
 
 	public void setFirstname(String firstname) {

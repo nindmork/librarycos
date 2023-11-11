@@ -1,4 +1,4 @@
-package com.bookStore;
+package com.librarycos;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

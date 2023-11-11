@@ -2,7 +2,7 @@ package com.librarycos.controller;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 
@@ -221,7 +221,6 @@ public class RentalAndRefundController {
 	public String getAllMybooks(Model showModel,HttpServletResponse response,@PathVariable("customerid")int customerId){
 		Customers customer = customerService.getById(customerId);
 		List<Rental> rentals = rentalService.listRental(customer);
-		List<Book> booklist = new ArrayList<>();
 		List<Rental> newRentalslist = new ArrayList<>();
 		List<Rental> hisRentalslist = new ArrayList<>();
 		for(Rental rental : rentals) {
@@ -255,20 +254,11 @@ public class RentalAndRefundController {
 			@PathVariable("rentalid")String rentalId) {
 		Rental rental = rentalService.findById(Integer.valueOf(rentalId));
 		Customers customer = rental.getCustomer();
-		Date currentTime = new Date();
-		Date pastTime = rental.getRentaEndtime();
-		long timeDifferenceInMillis = pastTime.getTime() - currentTime.getTime(); 
-		// แปลงเป็นวินาที
-		long timeDifferenceInSeconds = timeDifferenceInMillis / 1000;
-		// แปลงเป็นนาที
-		long timeDifferenceInMinutes = timeDifferenceInSeconds / 60;
-		// แปลงเป็นชั่วโมง
-		long timeDifferenceInHours = timeDifferenceInMinutes / 60;
-		// แปลงเป็นวัน
-		long timeDifferenceInDays = timeDifferenceInHours / 24;
-		long price = timeDifferenceInDays * 10;
-		model.addAttribute("Days",timeDifferenceInDays);
-		model.addAttribute("Price",price);
+		
+		Object[] priceAndDay = rentalService.expiredCalService(rental);
+
+		model.addAttribute("Days",priceAndDay[0]);
+		model.addAttribute("Price",priceAndDay[1]);
 		model.addAttribute("customers",customer);
 		model.addAttribute("rental",rental);
 		return "Expired_cal";

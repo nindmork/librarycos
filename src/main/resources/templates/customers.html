@@ -11,7 +11,7 @@
   </head>
   <body>
 	  <nav th:replace="navmenu :: navmenu"></nav>
-
+	<div th:if="${message != null}" class="alert alert-success tex-center">[[${message}]] </div>
   <div class="container my-5 col-md-8">
 	  <div>
 		<form th:action="@{/customers/page/1}" class="form-inline m-3">

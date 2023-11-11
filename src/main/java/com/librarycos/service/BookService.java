@@ -1,7 +1,7 @@
 package com.librarycos.service;
 
 
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.librarycos.entity.Book;
+import com.librarycos.entity.BookAndPrice;
 import com.librarycos.entity.BookStatus;
-import com.librarycos.entity.Customers;
 import com.librarycos.entity.User;
 import com.librarycos.repository.BookRepository;
 
@@ -24,7 +24,7 @@ public class BookService {
 	@Autowired
 	private BookRepository bRepo;
 	
-
+	private List<BookAndPrice> bookAndPriceList;
 
 	public void save(Book b,User user) {
 		b.setStatus(BookStatus.พร้อมยืม);
@@ -53,5 +53,7 @@ public class BookService {
 		}
 		return bRepo.findAll(pageable);
 	}
-	
+	public List<BookAndPrice> getAllBookAndPrice() {
+        return bookAndPriceList;
+    }
 }

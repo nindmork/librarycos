@@ -1,4 +1,4 @@
-package com.bookStore;
+package com.librarycos;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +24,7 @@ public class RoleRepositoryTests {
 	
 	@Test
 	public void testCreateFirstRole() {
-		Role roleAdmin = new Role("Admin", "manage everything"); 
+		Role roleAdmin = new Role("T", "manage everything"); 
 		Role savedRole = repo.save(roleAdmin);
 		
 		assertThat(savedRole.getId()).isGreaterThan(0);
